@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <title>Harrison &amp; Tasha | Engagement Collection</title>
+  <meta name="description" content="Harrison and Tasha's engagement collection, photographed by Cassar Creative Photography.">
+  <style>
+    :root {
+      --ink:#171714;
+      --cream:#f5f1e9;
+      --warm:#d8c8b2;
+      --paper:#fffdf8;
+      --muted:#6d675e;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height:1.6;
+    }
+    .hero {
+      min-height:100svh;
+      position:relative;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      color:white;
+      background:
+        linear-gradient(rgba(0,0,0,.30), rgba(0,0,0,.54)),
+        url("cover.jpg") center 42%/cover no-repeat;
+    }
+    .hero-inner {
+      padding:2rem 1.25rem;
+      max-width:950px;
+      text-shadow:0 2px 25px rgba(0,0,0,.55);
+    }
+    .eyebrow {
+      font-size:.72rem;
+      letter-spacing:.38em;
+      text-transform:uppercase;
+      margin-bottom:1.1rem;
+    }
+    h1 {
+      margin:0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight:400;
+      font-size:clamp(3rem, 10vw, 7.5rem);
+      line-height:.95;
+    }
+    .subtitle {
+      margin:1rem 0 2rem;
+      font-family:Georgia, "Times New Roman", serif;
+      font-style:italic;
+      font-size:clamp(1.05rem, 2vw, 1.45rem);
+    }
+    .scroll-link {
+      display:inline-block;
+      border:1px solid rgba(255,255,255,.75);
+      color:white;
+      text-decoration:none;
+      padding:.8rem 1.4rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:.72rem;
+      backdrop-filter:blur(5px);
+    }
+    .intro, .closing {
+      max-width:800px;
+      margin:0 auto;
+      padding:6rem 1.5rem;
+      text-align:center;
+    }
+    .section-label {
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      font-size:.68rem;
+      color:var(--muted);
+    }
+    h2 {
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(2rem,5vw,3.6rem);
+      font-weight:400;
+      line-height:1.1;
+      margin:.7rem 0 1.3rem;
+    }
+    .intro p, .closing p {
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.12rem;
+      color:#49453f;
+    }
+    .toolbar {
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      justify-content:center;
+      gap:.65rem;
+      padding:.85rem 1rem;
+      background:rgba(255,253,248,.92);
+      backdrop-filter:blur(12px);
+      border-top:1px solid #e9e1d5;
+      border-bottom:1px solid #e9e1d5;
+    }
+    .toolbar a {
+      text-decoration:none;
+      color:var(--ink);
+      border:1px solid var(--ink);
+      padding:.65rem 1rem;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+    .gallery {
+      columns:3 330px;
+      column-gap:10px;
+      padding:10px;
+      max-width:1800px;
+      margin:0 auto;
+      background:#f0ece5;
+    }
+    .gallery-item {
+      break-inside:avoid;
+      position:relative;
+      margin:0 0 10px;
+      background:#ddd;
+      overflow:hidden;
+    }
+    .image-button {
+      border:0;
+      padding:0;
+      display:block;
+      width:100%;
+      cursor:zoom-in;
+      background:none;
+    }
+    .gallery img {
+      display:block;
+      width:100%;
+      height:auto;
+      transition:transform .5s ease;
+    }
+    .gallery-item:hover img { transform:scale(1.018); }
+    .download-single {
+      position:absolute;
+      right:.65rem;
+      bottom:.65rem;
+      background:rgba(17,17,15,.76);
+      color:white;
+      text-decoration:none;
+      padding:.38rem .58rem;
+      font-size:.65rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:0;
+      transition:opacity .2s;
+    }
+    .gallery-item:hover .download-single,
+    .gallery-item:focus-within .download-single { opacity:1; }
+    .closing {
+      padding-top:7rem;
+      padding-bottom:7rem;
+    }
+    .signature {
+      display:block;
+      margin-top:2rem;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.5rem;
+      font-style:italic;
+    }
+    footer {
+      background:var(--ink);
+      color:#eee9df;
+      padding:2.5rem 1rem;
+      text-align:center;
+      font-size:.72rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    dialog {
+      border:0;
+      padding:0;
+      width:100vw;
+      height:100vh;
+      max-width:none;
+      max-height:none;
+      background:rgba(0,0,0,.95);
+    }
+    dialog::backdrop { background:rgba(0,0,0,.95); }
+    .lightbox-inner {
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding:4rem 1rem 1rem;
+    }
+    #lightbox-image {
+      max-width:96vw;
+      max-height:88vh;
+      object-fit:contain;
+      box-shadow:0 15px 70px rgba(0,0,0,.45);
+    }
+    .close-lightbox {
+      position:fixed;
+      top:1rem;
+      right:1rem;
+      color:white;
+      background:transparent;
+      border:1px solid rgba(255,255,255,.55);
+      font-size:1.6rem;
+      width:44px;
+      height:44px;
+      cursor:pointer;
+    }
+    @media (max-width:700px) {
+      .hero { min-height:82svh; }
+      .intro, .closing { padding:4rem 1.2rem; }
+      .gallery { columns:2 145px; gap:5px; padding:5px; }
+      .gallery-item { margin-bottom:5px; }
+      .download-single { opacity:1; font-size:.56rem; }
+      .toolbar { justify-content:space-between; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Cassar Creative Photography presents</div>
+      <h1>Harrison &amp; Tasha</h1>
+      <div class="subtitle">The Engagement Collection</div>
+      <a class="scroll-link" href="#story">View their story</a>
+    </div>
+  </header>
+
+  <section class="intro" id="story">
+    <div class="section-label">A new chapter</div>
+    <h2>Love, laughter and everything still to come.</h2>
+    <p>
+      A relaxed afternoon filled with family, little moments and the kind of laughter
+      that tells its own story. This collection celebrates Harrison and Tasha’s
+      engagement and the beautiful family at the heart of their next chapter.
+    </p>
+  </section>
+
+  <nav class="toolbar" aria-label="Gallery actions">
+    <a href="#gallery">View photographs</a>
+    <a href="harrison-tasha-engagement-collection.zip" download>Download all</a>
+  </nav>
+
+  <main class="gallery" id="gallery">
+    <figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-01.jpg" aria-label="Open photograph 1">
+        <img src="harrison-tasha-01.jpg" alt="Harrison and Tasha engagement photograph 1" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-01.jpg" download aria-label="Download photograph 1">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-02.jpg" aria-label="Open photograph 2">
+        <img src="harrison-tasha-02.jpg" alt="Harrison and Tasha engagement photograph 2" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-02.jpg" download aria-label="Download photograph 2">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-03.jpg" aria-label="Open photograph 3">
+        <img src="harrison-tasha-03.jpg" alt="Harrison and Tasha engagement photograph 3" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-03.jpg" download aria-label="Download photograph 3">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-04.jpg" aria-label="Open photograph 4">
+        <img src="harrison-tasha-04.jpg" alt="Harrison and Tasha engagement photograph 4" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-04.jpg" download aria-label="Download photograph 4">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-05.jpg" aria-label="Open photograph 5">
+        <img src="harrison-tasha-05.jpg" alt="Harrison and Tasha engagement photograph 5" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-05.jpg" download aria-label="Download photograph 5">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-06.jpg" aria-label="Open photograph 6">
+        <img src="harrison-tasha-06.jpg" alt="Harrison and Tasha engagement photograph 6" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-06.jpg" download aria-label="Download photograph 6">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-07.jpg" aria-label="Open photograph 7">
+        <img src="harrison-tasha-07.jpg" alt="Harrison and Tasha engagement photograph 7" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-07.jpg" download aria-label="Download photograph 7">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-08.jpg" aria-label="Open photograph 8">
+        <img src="harrison-tasha-08.jpg" alt="Harrison and Tasha engagement photograph 8" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-08.jpg" download aria-label="Download photograph 8">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-09.jpg" aria-label="Open photograph 9">
+        <img src="harrison-tasha-09.jpg" alt="Harrison and Tasha engagement photograph 9" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-09.jpg" download aria-label="Download photograph 9">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-10.jpg" aria-label="Open photograph 10">
+        <img src="harrison-tasha-10.jpg" alt="Harrison and Tasha engagement photograph 10" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-10.jpg" download aria-label="Download photograph 10">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-11.jpg" aria-label="Open photograph 11">
+        <img src="harrison-tasha-11.jpg" alt="Harrison and Tasha engagement photograph 11" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-11.jpg" download aria-label="Download photograph 11">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-12.jpg" aria-label="Open photograph 12">
+        <img src="harrison-tasha-12.jpg" alt="Harrison and Tasha engagement photograph 12" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-12.jpg" download aria-label="Download photograph 12">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-13.jpg" aria-label="Open photograph 13">
+        <img src="harrison-tasha-13.jpg" alt="Harrison and Tasha engagement photograph 13" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-13.jpg" download aria-label="Download photograph 13">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-14.jpg" aria-label="Open photograph 14">
+        <img src="harrison-tasha-14.jpg" alt="Harrison and Tasha engagement photograph 14" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-14.jpg" download aria-label="Download photograph 14">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-15.jpg" aria-label="Open photograph 15">
+        <img src="harrison-tasha-15.jpg" alt="Harrison and Tasha engagement photograph 15" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-15.jpg" download aria-label="Download photograph 15">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-16.jpg" aria-label="Open photograph 16">
+        <img src="harrison-tasha-16.jpg" alt="Harrison and Tasha engagement photograph 16" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-16.jpg" download aria-label="Download photograph 16">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-17.jpg" aria-label="Open photograph 17">
+        <img src="harrison-tasha-17.jpg" alt="Harrison and Tasha engagement photograph 17" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-17.jpg" download aria-label="Download photograph 17">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-18.jpg" aria-label="Open photograph 18">
+        <img src="harrison-tasha-18.jpg" alt="Harrison and Tasha engagement photograph 18" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-18.jpg" download aria-label="Download photograph 18">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-19.jpg" aria-label="Open photograph 19">
+        <img src="harrison-tasha-19.jpg" alt="Harrison and Tasha engagement photograph 19" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-19.jpg" download aria-label="Download photograph 19">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-20.jpg" aria-label="Open photograph 20">
+        <img src="harrison-tasha-20.jpg" alt="Harrison and Tasha engagement photograph 20" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-20.jpg" download aria-label="Download photograph 20">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-21.jpg" aria-label="Open photograph 21">
+        <img src="harrison-tasha-21.jpg" alt="Harrison and Tasha engagement photograph 21" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-21.jpg" download aria-label="Download photograph 21">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-22.jpg" aria-label="Open photograph 22">
+        <img src="harrison-tasha-22.jpg" alt="Harrison and Tasha engagement photograph 22" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-22.jpg" download aria-label="Download photograph 22">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-23.jpg" aria-label="Open photograph 23">
+        <img src="harrison-tasha-23.jpg" alt="Harrison and Tasha engagement photograph 23" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-23.jpg" download aria-label="Download photograph 23">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-24.jpg" aria-label="Open photograph 24">
+        <img src="harrison-tasha-24.jpg" alt="Harrison and Tasha engagement photograph 24" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-24.jpg" download aria-label="Download photograph 24">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-25.jpg" aria-label="Open photograph 25">
+        <img src="harrison-tasha-25.jpg" alt="Harrison and Tasha engagement photograph 25" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-25.jpg" download aria-label="Download photograph 25">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-26.jpg" aria-label="Open photograph 26">
+        <img src="harrison-tasha-26.jpg" alt="Harrison and Tasha engagement photograph 26" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-26.jpg" download aria-label="Download photograph 26">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-27.jpg" aria-label="Open photograph 27">
+        <img src="harrison-tasha-27.jpg" alt="Harrison and Tasha engagement photograph 27" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-27.jpg" download aria-label="Download photograph 27">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-28.jpg" aria-label="Open photograph 28">
+        <img src="harrison-tasha-28.jpg" alt="Harrison and Tasha engagement photograph 28" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-28.jpg" download aria-label="Download photograph 28">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-29.jpg" aria-label="Open photograph 29">
+        <img src="harrison-tasha-29.jpg" alt="Harrison and Tasha engagement photograph 29" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-29.jpg" download aria-label="Download photograph 29">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-30.jpg" aria-label="Open photograph 30">
+        <img src="harrison-tasha-30.jpg" alt="Harrison and Tasha engagement photograph 30" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-30.jpg" download aria-label="Download photograph 30">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-31.jpg" aria-label="Open photograph 31">
+        <img src="harrison-tasha-31.jpg" alt="Harrison and Tasha engagement photograph 31" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-31.jpg" download aria-label="Download photograph 31">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-32.jpg" aria-label="Open photograph 32">
+        <img src="harrison-tasha-32.jpg" alt="Harrison and Tasha engagement photograph 32" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-32.jpg" download aria-label="Download photograph 32">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-33.jpg" aria-label="Open photograph 33">
+        <img src="harrison-tasha-33.jpg" alt="Harrison and Tasha engagement photograph 33" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-33.jpg" download aria-label="Download photograph 33">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-34.jpg" aria-label="Open photograph 34">
+        <img src="harrison-tasha-34.jpg" alt="Harrison and Tasha engagement photograph 34" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-34.jpg" download aria-label="Download photograph 34">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-35.jpg" aria-label="Open photograph 35">
+        <img src="harrison-tasha-35.jpg" alt="Harrison and Tasha engagement photograph 35" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-35.jpg" download aria-label="Download photograph 35">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-36.jpg" aria-label="Open photograph 36">
+        <img src="harrison-tasha-36.jpg" alt="Harrison and Tasha engagement photograph 36" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-36.jpg" download aria-label="Download photograph 36">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-37.jpg" aria-label="Open photograph 37">
+        <img src="harrison-tasha-37.jpg" alt="Harrison and Tasha engagement photograph 37" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-37.jpg" download aria-label="Download photograph 37">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-38.jpg" aria-label="Open photograph 38">
+        <img src="harrison-tasha-38.jpg" alt="Harrison and Tasha engagement photograph 38" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-38.jpg" download aria-label="Download photograph 38">Download</a>
+    </figure>
+<figure class="gallery-item">
+      <button class="image-button" type="button" data-full="harrison-tasha-39.jpg" aria-label="Open photograph 39">
+        <img src="harrison-tasha-39.jpg" alt="Harrison and Tasha engagement photograph 39" loading="lazy">
+      </button>
+      <a class="download-single" href="harrison-tasha-39.jpg" download aria-label="Download photograph 39">Download</a>
+    </figure>
+  </main>
+
+  <section class="closing">
+    <div class="section-label">To Harrison &amp; Tasha</div>
+    <h2>This is only the beginning.</h2>
+    <p>
+      Thank you for trusting Cassar Creative to capture this beautiful season of your
+      story. It was such a joy photographing your engagement and your family, and it
+      means so much that you have chosen us to continue the journey as your wedding
+      photographers.
+    </p>
+    <p>
+      We cannot wait to capture every laugh, every happy tear and all the moments that
+      will make your wedding day completely yours.
+    </p>
+    <span class="signature">With love, Cassar Creative</span>
+  </section>
+
+  <footer>
+    Cassar Creative Photography &nbsp;•&nbsp; Your story, beautifully told
+  </footer>
+
+  <dialog id="lightbox" aria-label="Photograph viewer">
+    <button class="close-lightbox" type="button" aria-label="Close photograph">&times;</button>
+    <div class="lightbox-inner">
+      <img id="lightbox-image" src="" alt="Selected engagement photograph">
+    </div>
+  </dialog>
+
+  <script>
+    const dialog = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    document.querySelectorAll('.image-button').forEach(button => {
+      button.addEventListener('click', () => {
+        lightboxImage.src = button.dataset.full;
+        dialog.showModal();
+      });
+    });
+    document.querySelector('.close-lightbox').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog || event.target.classList.contains('lightbox-inner')) dialog.close();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && dialog.open) dialog.close();
+    });
+  </script>
+</body>
+</html>
